@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: rsvps
+    // Document ID: auto-generated or inviteId
+    // Fields:
+    //   - inviteId: string (required)
+    //   - guestName: string
+    //   - attendance: string (enum: yes, no)
+    //   - guests: number
+    //   - children: number
+    //   - allergies: string
+    //   - music: string
+    //   - message: string
+    //   - timestamp: timestamp (required)
+    //
+    // ===============================================================
+
+    match /rsvps/{rsvpId} {
+      // Permitimos crear confirmaciones a cualquier usuario (público)
+      // ya que no estamos usando autenticación obligatoria para invitados
+      allow create: if isValidRSVP(request.resource.data);
+      
+      // Solo lectura para los novios (admin) - En este caso, por simplicidad para el usuario,
+      // dejamos lectura abierta pero podrías restringirla luego.
+      allow read: if true; 
+    }
+
+    function isValidRSVP(data) {
+      return data.inviteId is string &&
+             data.attendance in ['yes', 'no'] &&
+             data.timestamp is timestamp &&
+             (!('guests' in data) || data.guests is number) &&
+             (!('children' in data) || data.children is number) &&
+             (!('music' in data) || data.music is string) &&
+             (!('message' in data) || data.message is string) &&
+             (!('allergies' in data) || data.allergies is string);
+    }
+  }
+}

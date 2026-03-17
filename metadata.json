@@ -1,0 +1,5 @@
+{
+  "name": "Nuestra Boda - Invitación",
+  "description": "Una elegante invitación de boda digital con temática verde olivo, detalles del evento, confirmación de asistencia y cuenta regresiva.",
+  "requestFramePermissions": ["geolocation"]
+}

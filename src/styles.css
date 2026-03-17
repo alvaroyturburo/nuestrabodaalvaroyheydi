@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-body: "Inter", sans-serif;
+  --font-accent: "Libre Baskerville", serif;
+
+  --color-olive-50: #f4f5f0;
+  --color-olive-100: #e4e6d9;
+  --color-olive-200: #ccd1b5;
+  --color-olive-300: #abb38a;
+  --color-olive-400: #8a9464;
+  --color-olive-500: #6b7547;
+  --color-olive-600: #545c38;
+  --color-olive-700: #42482e;
+  --color-olive-800: #363b28;
+  --color-olive-900: #2f3224;
+  --color-olive-950: #181b12;
+}
+
+@layer base {
+  body {
+    @apply bg-olive-50 text-olive-900 font-body antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+.serif-italic {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+.accent-font {
+  font-family: 'Libre Baskerville', serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}

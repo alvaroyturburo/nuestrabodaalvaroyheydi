@@ -1,0 +1,56 @@
+{
+  "entities": {
+    "RSVP": {
+      "title": "RSVP",
+      "description": "Confirmaciones de asistencia a la boda",
+      "type": "object",
+      "properties": {
+        "inviteId": {
+          "type": "string",
+          "description": "ID único del invitado del archivo guests.json"
+        },
+        "guestName": {
+          "type": "string",
+          "description": "Nombre del invitado principal"
+        },
+        "attendance": {
+          "type": "string",
+          "enum": ["yes", "no"],
+          "description": "Estado de asistencia"
+        },
+        "guests": {
+          "type": "integer",
+          "description": "Número de adultos confirmados"
+        },
+        "children": {
+          "type": "integer",
+          "description": "Número de niños confirmados"
+        },
+        "allergies": {
+          "type": "string",
+          "description": "Alergias alimentarias reportadas"
+        },
+        "music": {
+          "type": "string",
+          "description": "Sugerencia musical"
+        },
+        "message": {
+          "type": "string",
+          "description": "Mensaje para los novios"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Fecha y hora de la confirmación"
+        }
+      },
+      "required": ["inviteId", "attendance", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/rsvps/{rsvpId}": {
+      "schema": "RSVP",
+      "description": "Colección de confirmaciones de asistencia"
+    }
+  }
+}
